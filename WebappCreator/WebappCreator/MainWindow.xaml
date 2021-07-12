@@ -1,0 +1,14 @@
+﻿<Window x:Class="WebappCreator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WebappCreator"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid HorizontalAlignment="Left" Cursor="Help" VerticalAlignment="Top" AutomationProperties.HelpText="Select main folder">
+        <Label Content="Setup your project by creating its folder" HorizontalAlignment="Center" Margin="10,10,0,0" VerticalAlignment="Top" Height="43" Width="752" FontWeight="Bold" FontStyle="Italic"/>
+        <Button Content="Select main folder" HorizontalAlignment="Left" Margin="10,58,0,0" VerticalAlignment="Top" Cursor="Arrow" Command="{Binding DefineFolder}"/>
+
+    </Grid>
+</Window>
