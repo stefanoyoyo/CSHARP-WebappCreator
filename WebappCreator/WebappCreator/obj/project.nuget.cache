@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "fRUaHlSzfqizVuuAqIImybTphLzWjgv787zJlCDAiaDzi5D6lIeKuOZ0aHXrwk/Ndn1+CHnP55t9HAUYbFgcpw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ament\\OneDrive - PCT\\Documenti\\_1__Informatica\\_1__Miei\\_1__Studio\\_4__C#\\_1__Desktop\\_1__WPF (MVVM)\\_4__WebappCreator\\WebappCreator\\WebappCreator\\WebappCreator.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ament\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.31\\microsoft.xaml.behaviors.wpf.1.1.31.nupkg.sha512",
+    "C:\\Users\\ament\\.nuget\\packages\\prism.core\\8.1.97\\prism.core.8.1.97.nupkg.sha512",
+    "C:\\Users\\ament\\.nuget\\packages\\prism.wpf\\8.1.97\\prism.wpf.8.1.97.nupkg.sha512"
+  ],
+  "logs": []
+}
