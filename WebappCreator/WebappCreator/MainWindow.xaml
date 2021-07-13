@@ -7,8 +7,19 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid HorizontalAlignment="Left" Cursor="Help" VerticalAlignment="Top" AutomationProperties.HelpText="Select main folder">
-        <Label Content="Setup your project by creating its folder" HorizontalAlignment="Center" Margin="10,10,0,0" VerticalAlignment="Top" Height="43" Width="752" FontWeight="Bold" FontStyle="Italic"/>
-        <Button Content="Select main folder" HorizontalAlignment="Left" Margin="10,58,0,0" VerticalAlignment="Top" Cursor="Arrow" Command="{Binding DefineFolder}"/>
+        <DockPanel>
+            <Menu BorderThickness="1" BorderBrush="#FF878EB0"   DockPanel.Dock="Top" Width="796" Background="#FFBFC2DA" FontSize="16" FontFamily="Calibri" Padding="0,0,3,0" ScrollViewer.CanContentScroll="True" UseLayoutRounding="False">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_Open" Command="{Binding DefineFile}"/>
+                    <MenuItem Header="_New"  Command="{Binding DefineFolder}"/>
+                    <MenuItem Header="_Close"/>
+                    <MenuItem Header="_Save"/>
+                </MenuItem>
+                <MenuItem Header="_Help">
+                </MenuItem>
+            </Menu>
+            <StackPanel></StackPanel>
+        </DockPanel>
 
     </Grid>
 </Window>

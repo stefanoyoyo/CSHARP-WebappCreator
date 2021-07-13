@@ -17,22 +17,31 @@ namespace WebappCreator.Viewmodels
 
         #region properties
         public DelegateCommand DefineFolder { get; set;  }
+        public DelegateCommand DefineFile { get; set;  }
         #endregion
 
         #region constructor
         public WebappVM() 
         {
             DefineFolder = new DelegateCommand(SetFolder);
+            DefineFile = new DelegateCommand(SetFile);
         }
         #endregion
 
         #region methods
+        /// <summary>
+        /// Metodo che permette di lanciare la dialog per chiedere la selezione di
+        /// una cartella per contenente un progetto da aprire
+        /// </summary>
         public void SetFolder() 
         {
-            Console.WriteLine("clicked");
             string folder = FolderPicker.OpenFolderDialog();
-            string file = FilePicker.OpenFileDialog();
             Console.WriteLine(folder);
+        }
+
+        public void SetFile()
+        {
+            string file = FilePicker.OpenFileDialog();
             Console.WriteLine(file);
         }
 
