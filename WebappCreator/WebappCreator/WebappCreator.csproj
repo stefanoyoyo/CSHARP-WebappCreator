@@ -7,6 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Home\HomeBackground.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Home\HomeBackground.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Prism.Core" Version="8.1.97" />
     <PackageReference Include="Prism.Wpf" Version="8.1.97" />
   </ItemGroup>

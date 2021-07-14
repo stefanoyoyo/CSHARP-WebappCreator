@@ -20,6 +20,7 @@
             </Menu>
             <StackPanel></StackPanel>
         </DockPanel>
+        <Image Name="MyImg"  Source="/Assets/Home/HomeBackground.png" Height="391" Margin="10,25,0,0" VerticalAlignment="Top" Width="785"/>
 
     </Grid>
 </Window>
