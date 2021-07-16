@@ -40,7 +40,10 @@ namespace WebappCreator.Viewmodels
         {
             string folder = FolderPicker.OpenFolderDialog(
                 FileSystemHelper.GetFolderPath(Environment.SpecialFolder.MyDocuments));
-            Console.WriteLine(folder);
+            bool success = FileHelper.CreateTextFile(folder, "Index.html");
+            bool success2 = FileHelper.CreateFolder(folder, "FOLDER");
+            // TODO: method to create a folder before creating file in it.
+            //bool success = FileHelper.CreateMultipleFiles();
         }
 
         public void OpenFile()
