@@ -16,8 +16,8 @@ namespace WebappCreator.Viewmodels
         public event PropertyChangedEventHandler PropertyChanged;
 
         #region properties
-        public DelegateCommand DefineFolder { get; set;  }
-        public DelegateCommand DefineFile { get; set;  }
+        public DelegateCommand CreateProject { get; set;  }
+        public DelegateCommand OpenProject { get; set;  }
 
         /** Property to memorize the index.html file path in the project*/
         public string ProjectPath { get; set;  }
@@ -26,8 +26,8 @@ namespace WebappCreator.Viewmodels
         #region constructor
         public WebappVM() 
         {
-            DefineFolder = new DelegateCommand(SetFolder);
-            DefineFile = new DelegateCommand(SetFile);
+            CreateProject = new DelegateCommand(CreateProjectFolder);
+            OpenProject = new DelegateCommand(OpenProjectFile);
         }
         #endregion
 
@@ -36,14 +36,14 @@ namespace WebappCreator.Viewmodels
         /// Metodo che permette di lanciare la dialog per chiedere la selezione di
         /// una cartella per contenente un progetto da aprire
         /// </summary>
-        public void SetFolder() 
+        public void CreateProjectFolder() 
         {
             string folder = FolderPicker.OpenFolderDialog(
                 FileSystemHelper.GetFolderPath(Environment.SpecialFolder.MyDocuments));
             Console.WriteLine(folder);
         }
 
-        public void SetFile()
+        public void OpenProjectFile()
         {
             string file = FilePicker.OpenFileDialog();
             Console.WriteLine(file);

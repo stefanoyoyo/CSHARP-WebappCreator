@@ -10,8 +10,8 @@
         <DockPanel>
             <Menu BorderThickness="1" BorderBrush="#FF878EB0"   DockPanel.Dock="Top" Width="796" Background="#FFBFC2DA" FontSize="16" FontFamily="Calibri" Padding="0,0,3,0" ScrollViewer.CanContentScroll="True" UseLayoutRounding="False">
                 <MenuItem Header="_File">
-                    <MenuItem Header="_Open" Command="{Binding DefineFile}"/>
-                    <MenuItem Header="_New"  Command="{Binding DefineFolder}"/>
+                    <MenuItem Header="_Open" Command="{Binding OpenProject}"/>
+                    <MenuItem Header="_New"  Command="{Binding CreateProject}"/>
                     <MenuItem Header="_Close"/>
                     <MenuItem Header="_Save"/>
                 </MenuItem>
