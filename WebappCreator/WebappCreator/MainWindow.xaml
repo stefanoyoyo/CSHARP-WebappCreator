@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WebappCreator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Webapp Creatopr" Height="450" Width="800">
     <Grid HorizontalAlignment="Left" Cursor="Help" VerticalAlignment="Top" AutomationProperties.HelpText="Select main folder">
         <DockPanel>
             <Menu BorderThickness="1" BorderBrush="#FF878EB0"   DockPanel.Dock="Top" Width="796" Background="#FFBFC2DA" FontSize="16" FontFamily="Calibri" Padding="0,0,3,0" ScrollViewer.CanContentScroll="True" UseLayoutRounding="False">
@@ -20,7 +20,7 @@
             </Menu>
             <StackPanel></StackPanel>
         </DockPanel>
-        <Image Name="MyImg"  Source="/Assets/Home/HomeBackground.png" Height="391" Margin="10,25,0,0" VerticalAlignment="Top" Width="785"/>
+        <Image Name="MyImg" Source="/Assets/Home/HomeBackground.png" Height="391" Margin="10,25,0,0" VerticalAlignment="Top" Width="785"/>
 
     </Grid>
 </Window>

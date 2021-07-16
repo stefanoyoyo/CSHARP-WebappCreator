@@ -20,10 +20,15 @@ namespace WebappCreator.Helpers
         public virtual string FileNameLabel { get; set; }
 
         #region pickFolder 
-        public static string OpenFolderDialog()
+        /// <summary>
+        /// Mwthod to obtain the path of the selected Folder.
+        /// </summary>
+        /// <param name="inputPath">Optional parameter to set the dialog source folder</param>
+        /// <returns></returns>
+        public static string OpenFolderDialog(string inputPath=null)
         {
             var dlg = new FolderPicker();
-            dlg.InputPath = @"c:\windows\system32";
+            dlg.InputPath = inputPath != null ? inputPath : @"c:\windows\system32";
             if (dlg.ShowDialog() == true)
             {
                 MessageBox.Show(dlg.ResultPath);

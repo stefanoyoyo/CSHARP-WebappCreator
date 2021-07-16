@@ -18,6 +18,9 @@ namespace WebappCreator.Viewmodels
         #region properties
         public DelegateCommand DefineFolder { get; set;  }
         public DelegateCommand DefineFile { get; set;  }
+
+        /** Property to memorize the index.html file path in the project*/
+        public string ProjectPath { get; set;  }
         #endregion
 
         #region constructor
@@ -35,7 +38,8 @@ namespace WebappCreator.Viewmodels
         /// </summary>
         public void SetFolder() 
         {
-            string folder = FolderPicker.OpenFolderDialog();
+            string folder = FolderPicker.OpenFolderDialog(
+                FileSystemHelper.GetFolderPath(Environment.SpecialFolder.MyDocuments));
             Console.WriteLine(folder);
         }
 
