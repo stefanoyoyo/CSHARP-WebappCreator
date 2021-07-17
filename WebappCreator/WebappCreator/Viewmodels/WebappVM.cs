@@ -45,11 +45,11 @@ namespace WebappCreator.Viewmodels
             bool success3 = FileHelper.CreateMultipleFiles(
                 Models.FileInfo.GetFiles(
                         new string[][]
-                        { // <html><header></header><body></body></html>
-                            new string[] { "Index.html", folder, "<div style=\"width:100vw;height:100vh;\">\n<iframe style=\"width:100vw; height:100vh;border-width: 0;\" src=\"home/home.html\" ></iframe></div>"},
+                        {   
+                            new string[] { "Index.html", folder, "<div style=\"width:100vw;height:100vh;\">\n\t<iframe style=\"width:100vw; height:100vh;border-width: 0;\" src=\"home/home.html\"></iframe>\n</div>"},
                             new string[] { "Home.html", folder + "\\Home", "<html><header><!-- #region imports --><script type=\"text/javascript\" src=\"Home.js\"></script><link rel=\"stylesheet\" href=\"Home.css\"><!-- #endregion --></header><body>HELLO WORLD</body></html>"},
-                            new string[] { "Home.css", folder + "\\Home", "HELLO WORLD"},
-                            new string[] { "Home.js", folder + "\\Home", "HELLO WORLD"},
+                            new string[] { "Home.css", folder + "\\Home", "body {\n  background: aqua; \n}"},
+                            new string[] { "Home.js", folder + "\\Home", "console.log('Hello world');"},
                         }
                     ));
         }

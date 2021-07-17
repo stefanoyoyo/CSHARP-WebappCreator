@@ -29,10 +29,6 @@ namespace WebappCreator.Helpers
         {
             var dlg = new FolderPicker();
             dlg.InputPath = inputPath != null ? inputPath : @"c:\windows\system32";
-            if (dlg.ShowDialog() == true)
-            {
-                MessageBox.Show(dlg.ResultPath);
-            }
             return dlg.ResultPath;
         }
         #endregion
