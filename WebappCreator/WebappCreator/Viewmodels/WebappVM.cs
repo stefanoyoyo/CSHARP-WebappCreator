@@ -40,10 +40,18 @@ namespace WebappCreator.Viewmodels
         {
             string folder = FolderPicker.OpenFolderDialog(
                 FileSystemHelper.GetFolderPath(Environment.SpecialFolder.MyDocuments));
-            bool success = FileHelper.CreateTextFile(folder, "Index.html");
-            bool success2 = FileHelper.CreateFolder(folder, "FOLDER");
+
             // TODO: method to create a folder before creating file in it.
-            //bool success = FileHelper.CreateMultipleFiles();
+            bool success3 = FileHelper.CreateMultipleFiles(
+                Models.FileInfo.GetFiles(
+                        new string[][]
+                        { // <html><header></header><body></body></html>
+                            new string[] { "Index.html", folder, "<div style=\"width:100vw;height:100vh;\">\n<iframe style=\"width:100vw; height:100vh;border-width: 0;\" src=\"home/home.html\" ></iframe></div>"},
+                            new string[] { "Home.html", folder + "\\Home", "<html><header><!-- #region imports --><script type=\"text/javascript\" src=\"Home.js\"></script><link rel=\"stylesheet\" href=\"Home.css\"><!-- #endregion --></header><body>HELLO WORLD</body></html>"},
+                            new string[] { "Home.css", folder + "\\Home", "HELLO WORLD"},
+                            new string[] { "Home.js", folder + "\\Home", "HELLO WORLD"},
+                        }
+                    ));
         }
 
         public void OpenFile()

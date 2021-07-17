@@ -1,15 +1,114 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace WebappCreator.Helpers
 {
     public class FileHelper
     {
-        public static bool CreateMultipleFiles() 
+        /// <summary>
+        /// Method to create the files specified.
+        /// When no extention is specified, a file 
+        /// having no extention will be created.
+        /// </summary>
+        /// <param name="files">Files to create</param>
+        /// <returns></returns>
+        public static bool CreateMultipleFiles(Models.FileInfo[] files) 
         {
+            foreach (var file in files)
+            {
+                if (!CheckPathValidity(file.Path))
+                {
+                    ValidatePath(file.Path);
+                }
+                FileHelper.CreateTextFile(
+                    file.Path, 
+                    file.Name,
+                    file.Content);
+            }
+
             return false;
+        }
+
+        /// <summary>
+        /// Method to validate the path specified by creating 
+        /// the non existing folders
+        /// </summary>
+        /// <param name="path">Path which validity is to check</param>
+        private static void ValidatePath(string path)
+        {
+            string composedPath = "";
+            var tokens = path.Split("\\");
+            foreach (var folder in tokens)
+            {
+                composedPath += folder;
+                if (FileHelper.FolderExists(composedPath))
+                {
+                    composedPath += "\\";
+                }
+                else
+                {
+                    // Removing last folder from path to create it
+                    FileHelper.CreateFolder( 
+                        ConcatStrings(
+                            tokens.Where((item, index) => index != tokens.Length - 1).ToArray()),
+                            tokens.Where((item, index) => index == tokens.Length - 1).ToArray()[0]
+                        );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Method to concatenate a stirng array into a single merged string.
+        /// </summary>
+        /// <param name="tokens"></param>
+        /// <returns></returns>
+        private static string ConcatStrings(string[] tokens)
+        {
+            string concat = "";
+            foreach (var token in tokens)
+            {
+                concat += token + "\\";
+            }
+            return concat;
+        }
+
+        /// <summary>
+        /// Method cheching if the folders composing the specified 
+        /// path exist.
+        /// <process>
+        /// The following path 
+        /// C:\Users\user\folder\Document\_4__WebappCreator\AppTesting\Project_1
+        /// is cheched token by token to test if a subpath does not exist. 
+        ///  •  C:
+        ///  •  C:\Users
+        ///  •  C:\Users\user\folder
+        ///  •  C:\Users\user\folder\Document
+        ///  •  C:\Users\user\folder\Document\_4__WebappCreator
+        ///  •  C:\Users\user\folder\Document\_4__WebappCreator\AppTesting
+        ///  •  C:\Users\user\folder\Document\_4__WebappCreator\AppTesting\Project_1
+        /// </process>
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        private static bool CheckPathValidity(string path)
+        {
+            string composedPath = "";
+            foreach (var folder in path.Split("\\"))
+            {
+                composedPath += folder;
+                if (FileHelper.FolderExists(composedPath))
+                {
+                    composedPath += "\\";
+                }
+                else 
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         /// <summary>
@@ -22,7 +121,7 @@ namespace WebappCreator.Helpers
         {
             try
             {
-                path = ManagePathFilenameDivisor(path);
+                path = StringHelper.ManagePathFilenameDivisor(path);
                 File.Create(path + filename).Dispose();
                 return true;
             }
@@ -33,16 +132,7 @@ namespace WebappCreator.Helpers
             }
         }
 
-        /// <summary>
-        /// Method to test if last path string character is '/'.
-        /// If it is not, it will be added.
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        private static string ManagePathFilenameDivisor(string path)
-        {
-            return path.ToCharArray()[path.Length - 1] == '/' ? path : path + '/';
-        }
+
 
         /// <summary>
         /// Method to create a new file in the PC filesystem
@@ -61,13 +151,17 @@ namespace WebappCreator.Helpers
         {
             try
             {
-                bool success = CreateFile(path, filename);
-                path = ManagePathFilenameDivisor(path);
-                File.WriteAllText(
-                    path + filename,
-                    text != null ? text : String.Empty
-                    );
-                return true;
+                path = StringHelper.ManagePathFilenameDivisor(path);
+                if (!File.Exists(path + filename))
+                {
+                    bool success = CreateFile(path, filename);
+                    File.WriteAllText(
+                        path + filename,
+                        text != null ? text : String.Empty
+                        );
+                    return true;
+                }
+                return false;
             }
             catch (Exception ex)
             {
@@ -87,15 +181,39 @@ namespace WebappCreator.Helpers
         {
             try
             {
-                path = ManagePathFilenameDivisor(path);
-                System.IO.Directory.CreateDirectory(path + folderName);
-                return true;
+                path = StringHelper.ManagePathFilenameDivisor(path);
+                if (!Directory.Exists(path + folderName))
+                {
+                    Directory.CreateDirectory(path + folderName);
+                    return true;
+                }
+                return false;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Method to check if the specified file exists.
+        /// </summary>
+        /// <param name="path">Path of the file to check</param>
+        /// <returns></returns>
+        public static bool FileExists(string path)
+        {
+            return File.Exists(path);
+        }
+
+        /// <summary>
+        /// Method to check if the specified folder exists.
+        /// </summary>
+        /// <param name="path">Path of the folder to check</param>
+        /// <returns></returns>
+        public static bool FolderExists(string path)
+        {
+            return Directory.Exists(path);
         }
     }
 }
