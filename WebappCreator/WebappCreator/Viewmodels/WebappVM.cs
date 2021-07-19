@@ -19,6 +19,8 @@ namespace WebappCreator.Viewmodels
         public DelegateCommand CreateProject { get; set;  }
         public DelegateCommand OpenProject { get; set;  }
 
+        public string OpenedPath { get; set; }
+
         /** Property to memorize the index.html file path in the project*/
         public string ProjectPath { get; set;  }
         #endregion
@@ -41,7 +43,6 @@ namespace WebappCreator.Viewmodels
             string folder = FolderPicker.OpenFolderDialog(
                 FileSystemHelper.GetFolderPath(Environment.SpecialFolder.MyDocuments));
 
-            // TODO: method to create a folder before creating file in it.
             bool success3 = FileHelper.CreateMultipleFiles(
                 Models.FileInfo.GetFiles(
                         new string[][]
@@ -52,6 +53,9 @@ namespace WebappCreator.Viewmodels
                             new string[] { "Home.js", folder + "\\Home", "console.log('Hello world');"},
                         }
                     ));
+
+            // TODO: set actual created ptoject as opened, then use a tree to display it on screen
+            this.OpenedPath = success3 ? folder : this.OpenedPath;
         }
 
         public void OpenFile()
