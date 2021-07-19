@@ -8,6 +8,8 @@ using System.IO;
 using System.Windows;
 using WebappCreator.Helpers;
 using System.Windows;
+using WebappCreator.Models;
+using System.Windows.Data;
 
 namespace WebappCreator.Viewmodels
 {
@@ -23,6 +25,32 @@ namespace WebappCreator.Viewmodels
 
         /** Property to memorize the index.html file path in the project*/
         public string ProjectPath { get; set;  }
+
+        #endregion
+
+        #region variables
+
+        List<TreeItem> treeItems = new List<TreeItem>()
+            {
+                new TreeItem
+                {
+                    Name = "TreeItem 1"
+                },
+                new TreeItem
+                {
+                    Name = "TreeItem 2"
+                },
+                new TreeItem
+                {
+                    Name = "TreeItem 3"
+                },
+                new TreeItem
+                {
+                    Name = "TreeItem 4"
+                }
+            };
+
+
         #endregion
 
         #region constructor
@@ -61,9 +89,9 @@ namespace WebappCreator.Viewmodels
         public void OpenFile()
         {
             string file = FilePicker.OpenFileDialog(
-                FileSystemHelper.GetFolderPath(Environment.SpecialFolder.MyDocuments), 
-                "Index.html", 
-                ".html", 
+                FileSystemHelper.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                "Index.html",
+                ".html",
                 "Main project file (.html)|*.html");
             Console.WriteLine(file);
         }
@@ -71,5 +99,15 @@ namespace WebappCreator.Viewmodels
 
         #endregion
 
+        public ICollectionView Books
+        {
+            get
+            {
+                var source = CollectionViewSource.GetDefaultView(this.treeItems);
+                source.GroupDescriptions.Add(new PropertyGroupDescription("Type")
+            );
+                return source;
+            }
+        }
     }
 }

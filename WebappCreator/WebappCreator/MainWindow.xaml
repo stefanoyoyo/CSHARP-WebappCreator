@@ -35,14 +35,19 @@
                Margin="10,25,0,0" 
                VerticalAlignment="Top" 
                Width="785"/>
-        <TreeView 
-            Width="150px" 
-            Height="200px" 
-            VerticalAlignment="Top" 
-            HorizontalAlignment="Left" 
-            Background="AliceBlue"
-            Margin="0,25,0,0">
-            <TreeViewItem Header="Project folder"></TreeViewItem>
-        </TreeView>
+        
+            <TreeView ItemsSource="{Binding Books.Groups}"
+                Width="150px" 
+                Height="200px" 
+                VerticalAlignment="Top" 
+                HorizontalAlignment="Left" 
+                Background="AliceBlue"
+                Margin="0,25,0,0">
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Items}">
+                        <TextBlock Text="{Binding Name}" />
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
     </Grid>
 </Window>
